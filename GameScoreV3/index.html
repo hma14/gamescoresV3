@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container body-content" ng-app="scoreApp">
+        <ul class="alert alert-danger alert-dismissable animate-show" ng-show="errors">
+            <li ng-repeat="error in errors">
+                {{error}}
+            </li>
+        </ul>
+        <div ng-controller="scoreController" ng-init="init()">           
+            <div class="jumbotron">
+                <div><span><img style="max-width:100%; max-height:100%;" alt="" src="https://prodcmsassets.blob.core.windows.net/media/Default/RemasteringGears/marcusecu_hero-437badf36d5e45c0904fcfd7b542d884.jpg"></span></div>
+                <div ng-show="players.length > 0" class="title">
+                    <h2 class="title">Member's Scores</h2>
+                    <h3 class="title">Plutonium Star to {{ highScore[0].last }}, {{ highScore[0].first }} <img src="/Content/img/briggen-sml.gif" /></h3>
+                    <p>{{ highScore[0].last }}, {{ highScore[0].first }}, you have proven yourself in battle.  The Resistance headquarters salutes you!</p>
+                </div>
+            </div>
+            <div class="col-md-12 column list-group">
+                <div ng-repeat="player in players | orderBy: '-score'  as highScore">
+                    <div class="list-group-item">
+                        <a href="#" class="list-group-item">
+                            <h4><strong>{{ player.last }}, {{ player.first }}</strong></h4>
+                            <p class="list-group-item-text"><strong>Score:</strong> {{ player.score }} - <strong>Rank:</strong> {{ player.rank }} - <strong>Last Played:</strong> {{ player.last_played | date:'yyyy-MM-dd HH:mm:ss Z'}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <footer>
+            <p>&copy; 2015 - War Campaign</p>
+        </footer>
+    </div>
+
+   
+
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/angular-resource.js"></script>
+    <script src="Scripts/app/resource.js"></script>
+    <script src="Scripts/app/scoreApp.js"></script>
+</body>
+</html>
